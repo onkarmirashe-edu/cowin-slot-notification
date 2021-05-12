@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cowin_Slot_Notification", "Cowin_Slot_Notification\Cowin_Slot_Notification.csproj", "{17B7D20E-17A0-408A-8FEC-780962F93441}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{17B7D20E-17A0-408A-8FEC-780962F93441}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17B7D20E-17A0-408A-8FEC-780962F93441}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17B7D20E-17A0-408A-8FEC-780962F93441}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17B7D20E-17A0-408A-8FEC-780962F93441}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E13799F3-5BEE-4E16-A022-406CAA0332C3}
+	EndGlobalSection
+EndGlobal
