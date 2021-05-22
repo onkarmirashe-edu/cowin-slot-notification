@@ -13,7 +13,6 @@ E:\Study\Visual_Studio_Repos\Cowin_Slot_Notification\Cowin_Slot_Notification\obj
 E:\Study\Visual_Studio_Repos\Cowin_Slot_Notification\Cowin_Slot_Notification\obj\Debug\netcoreapp3.1\Cowin_Slot_Notification.dll
 E:\Study\Visual_Studio_Repos\Cowin_Slot_Notification\Cowin_Slot_Notification\obj\Debug\netcoreapp3.1\Cowin_Slot_Notification.pdb
 E:\Study\Visual_Studio_Repos\Cowin_Slot_Notification\Cowin_Slot_Notification\obj\Debug\netcoreapp3.1\Cowin_Slot_Notification.genruntimeconfig.cache
-E:\Study\Git_Projects\cowin-slot-notification\Cowin_Slot_Notification\obj\Debug\netcoreapp3.1\Cowin_Slot_Notification.csprojAssemblyReference.cache
 E:\Study\Git_Projects\cowin-slot-notification\Cowin_Slot_Notification\obj\Debug\netcoreapp3.1\Cowin_Slot_Notification.AssemblyInfoInputs.cache
 E:\Study\Git_Projects\cowin-slot-notification\Cowin_Slot_Notification\obj\Debug\netcoreapp3.1\Cowin_Slot_Notification.AssemblyInfo.cs
 E:\Study\Git_Projects\cowin-slot-notification\Cowin_Slot_Notification\obj\Debug\netcoreapp3.1\Cowin_Slot_Notification.csproj.CoreCompileInputs.cache

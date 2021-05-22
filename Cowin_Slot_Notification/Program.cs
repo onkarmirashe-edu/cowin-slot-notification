@@ -50,35 +50,26 @@ namespace Cowin_Slot_Notification
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            try
-            {
-                var currDir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-                var fileName = "configuration.txt";
-                var configFile = Path.Combine(currDir, fileName);
-                var serializer = new DataContractJsonSerializer(typeof(ApplicationConfiguration));
-                MemoryStream ms = new MemoryStream();
-                using (FileStream file = new FileStream(configFile, FileMode.Open, FileAccess.Read))
-                    file.CopyTo(ms);
-                ms.Position = 0;
-                applicationConfiguration = serializer.ReadObject(ms) as ApplicationConfiguration;
+            var currDir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            var fileName = "configuration.txt";
+            var configFile = Path.Combine(currDir, fileName);
+            var serializer = new DataContractJsonSerializer(typeof(ApplicationConfiguration));
+            MemoryStream ms = new MemoryStream();
+            using (FileStream file = new FileStream(configFile, FileMode.Open, FileAccess.Read))
+                file.CopyTo(ms);
+            ms.Position = 0;
+            applicationConfiguration = serializer.ReadObject(ms) as ApplicationConfiguration;
 
-                var apiCallsPerExecution = applicationConfiguration.Configurations.Count;
+            var apiCallsPerExecution = applicationConfiguration.Configurations.Count;
 
-                // 100 calls per 5 minutes per IP. Means
-                var apiCallTimeDiff = 3 * 1000;
-
-                Timer timer = new Timer();
-                timer.Interval = apiCallsPerExecution * apiCallTimeDiff;
-                Program obj = new Program();
-                timer.Elapsed += new ElapsedEventHandler(obj.timer_Elapsed);
-                timer.Start();
-                Console.Read();
-            }
-            catch (Exception ex)
-            {
-                Logger.Log(ex.Message);
-            }
-            
+            // 100 calls per 5 minutes per IP. Means
+            var apiCallTimeDiff = 3 * 1000;
+            Timer timer = new Timer();
+            timer.Interval = apiCallsPerExecution * apiCallTimeDiff;
+            Program obj = new Program();
+            timer.Elapsed += new ElapsedEventHandler(obj.timer_Elapsed);
+            timer.Start();
+            Console.Read();
         }
 
         /// <summary>
@@ -110,7 +101,7 @@ namespace Cowin_Slot_Notification
         /// <param name="configuration"></param>
         private static void ProcessVaccineDetails(VaccineDetails details, Configuration configuration)
         {
-            var centersHavingSlots = details.centers.Where(x => (configuration.Name.Any() == false || configuration.Name.Contains(x.name, StringComparer.InvariantCultureIgnoreCase)) && x.sessions.Any(y => y.available_capacity > 0 && (configuration.Min_age_limit == 0 || configuration.Min_age_limit == y.min_age_limit)));
+            var centersHavingSlots = GetCenterDetails(details, configuration);
             if (centersHavingSlots.Any())
             {
 
@@ -127,6 +118,17 @@ namespace Cowin_Slot_Notification
                     Logger.Log(ex.Message);
                 }
             }
+        }
+
+        /// <summary>
+        /// return centers as per the filer criteria
+        /// </summary>
+        /// <param name="details"></param>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
+        private static List<Center> GetCenterDetails(VaccineDetails details, Configuration configuration)
+        {
+            return details.centers.Where(x => (configuration.Name.Any() == false || configuration.Name.Contains(x.name, StringComparer.InvariantCultureIgnoreCase)) && x.sessions.Any(y => y.available_capacity > 0 && (configuration.Min_age_limit == 0 || configuration.Min_age_limit == y.min_age_limit) && (configuration.Dose.Trim() == "-" || string.IsNullOrEmpty(configuration.Dose) || (configuration.Dose.Trim() == "1" && y.available_capacity_dose1 > 0) || (configuration.Dose.Trim() == "2" && y.available_capacity_dose2 > 0)))).ToList();
         }
 
         /// <summary>
@@ -149,7 +151,7 @@ namespace Cowin_Slot_Notification
                 data.AppendLine("<br/>Pincode : " + item.pincode);
                 data.AppendLine("<br/>Fee : " + item.fee_type);
 
-                foreach (var session in item.sessions.Where(x => x.available_capacity > 0 && (configuration.Min_age_limit == 0 || configuration.Min_age_limit == x.min_age_limit)))
+                foreach (var session in item.sessions.Where(x => x.available_capacity > 0 && (configuration.Min_age_limit == 0 || configuration.Min_age_limit == x.min_age_limit) && (configuration.Dose.Trim() == "-" || string.IsNullOrEmpty(configuration.Dose) || (configuration.Dose.Trim() == "1" && x.available_capacity_dose1 > 0) || (configuration.Dose.Trim() == "2" && x.available_capacity_dose2 > 0))))
                 {
                     data.AppendLine("<br/>");
                     data.AppendLine("<br/>------------------------------------------------");
@@ -158,6 +160,8 @@ namespace Cowin_Slot_Notification
                     data.AppendLine("<br/>Date : " + session.date);
                     data.AppendLine("<br/>Available Capacity : " + session.available_capacity);
                     data.AppendLine("<br/>Minimum Age Limit : " + session.min_age_limit);
+                    data.AppendLine("<br/>Available Capacity Dose 1 : " + session.available_capacity_dose1);
+                    data.AppendLine("<br/>Available Capacity Dose 2 : " + session.available_capacity_dose2);
                     data.AppendLine("<br/>Vaccine : " + session.vaccine);
                     data.AppendLine("<br/>");
                     data.AppendLine("<br/>------------------------------------------------");

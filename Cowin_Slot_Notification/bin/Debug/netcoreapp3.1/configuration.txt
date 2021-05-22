@@ -1,6 +1,7 @@
 {
     "configurations": [
-        {                        
+        {       
+			"dose": "-",
             "pincode": "445204",
 			"min_age_limit": 18,
 			"to_email": "onimail555@gmail.com,tushar.patil7490@gmail.com",
@@ -8,10 +9,13 @@
 				"Gadhi Ward UHC",
 				"Pusad SDH Hospital",
 				"Vasant Nagar UHC-2",
-				"Pusad SDH (18 To 44 Years)"
+				"Pusad SDH (18 To 44 Years)",
+				"LIFE LINE HOSPITAL PUSAD COVIE",
+				"CHONDHI PHC"
 			]
         },
-		{            
+		{      
+			"dose": "1",
             "pincode": "445204",
 			"min_age_limit": 45,
 			"to_email": "onimail555@gmail.com,sagarpadmawar3161@gmail.com",
@@ -19,7 +23,9 @@
 				"Gadhi Ward UHC",
 				"Pusad SDH Hospital",
 				"Vasant Nagar UHC-2",
-				"Pusad SDH (18 To 44 Years)"
+				"Pusad SDH (18 To 44 Years)",
+				"LIFE LINE HOSPITAL PUSAD COVIE",
+				"CHONDHI PHC"
 			]
         }
     ]

@@ -25,6 +25,18 @@ namespace Cowin_Slot_Notification
         public string vaccine { get; set; }
         [DataMember]
         public List<string> slots { get; set; }
+
+        [DataMember]
+        public int available_capacity_dose1
+        {
+            get; set;
+        }
+
+        [DataMember]
+        public int available_capacity_dose2
+        {
+            get; set;
+        }
     }
 
     [DataContract]

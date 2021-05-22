@@ -24,5 +24,11 @@ namespace Cowin_Slot_Notification
         public string To_email { get; set; }
         [DataMember(Name = "name")]
         public List<string> Name { get; set; }
+
+        [DataMember(Name = "dose")]
+        public string Dose
+        {
+            get; set;
+        }
     }
 }
